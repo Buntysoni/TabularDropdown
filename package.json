@@ -1,0 +1,31 @@
+{
+  "name": "tabulardropdown",
+  "version": "1.0.0",
+  "description": "A fully customizable React dropdown component that displays data in a scrollable, searchable table layout. Supports keyboard navigation, infinite scroll pagination, and dynamic data + styling. Built for modern enterprise UI needs.",
+  "main": "dist/index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "npm install --save-dev jest",
+    "build": "rollup -c"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "author": "Unlein® Private Limited",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "rollup": "^2.79.2",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2"
+  }
+}
