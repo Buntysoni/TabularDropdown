@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styles from './TabularDropdown.module.css';
 
-const TableDropdown = ({
+const TabularDropdown = ({
     data = [],
     onSelect,
     defaultSelected,
@@ -467,7 +467,7 @@ const TableDropdown = ({
     }
 };
 
-TableDropdown.propTypes = {
+TabularDropdown.propTypes = {
     data: PropTypes.arrayOf(PropTypes.object).isRequired,
     onSelect: PropTypes.func,
     defaultSelected: PropTypes.object,
@@ -481,4 +481,4 @@ TableDropdown.propTypes = {
     isDisabled: PropTypes.bool
 };
 
-export default TableDropdown;
+export default TabularDropdown;

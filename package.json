@@ -1,6 +1,6 @@
 {
   "name": "tabulardropdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A fully customizable React dropdown component that displays data in a scrollable, searchable table layout. Supports keyboard navigation, infinite scroll pagination, and dynamic data + styling. Built for modern enterprise UI needs.",
   "main": "dist/index.js",
   "directories": {
@@ -11,9 +11,31 @@
     "build": "rollup -c"
   },
   "peerDependencies": {
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
   },
+  "keywords": [
+    "react",
+    "dropdown",
+    "table dropdown",
+    "tabular dropdown",
+    "search dropdown",
+    "react table dropdown",
+    "react searchable dropdown",
+    "react custom dropdown",
+    "react dropdown component",
+    "react input dropdown",
+    "react searchable select",
+    "dropdown with table",
+    "dropdown with scroll",
+    "react autocomplete",
+    "react dropdown list",
+    "react data dropdown",
+    "react combobox",
+    "react select table",
+    "react dynamic dropdown",
+    "infinite scroll dropdown"
+  ],
   "author": "Unlein® Private Limited",
   "license": "MIT",
   "devDependencies": {

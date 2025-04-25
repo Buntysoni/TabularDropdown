@@ -1042,7 +1042,7 @@ var css_248z = ".TabularDropdown-module_advancedDropdown__o013q {\r\n    positio
 var styles = {"advancedDropdown":"TabularDropdown-module_advancedDropdown__o013q","dropdownMenu":"TabularDropdown-module_dropdownMenu__zEwy-","dropdownList":"TabularDropdown-module_dropdownList__dlOyt","dropdownRow":"TabularDropdown-module_dropdownRow__wqknt","focused":"TabularDropdown-module_focused__au2XV","dropdownCell":"TabularDropdown-module_dropdownCell__gSgSj","dropdownHeaderCell":"TabularDropdown-module_dropdownHeaderCell__Tm9g0"};
 styleInject(css_248z);
 
-var TableDropdown = function TableDropdown(_ref) {
+var TabularDropdown = function TabularDropdown(_ref) {
   var _ref$data = _ref.data,
     data = _ref$data === void 0 ? [] : _ref$data,
     onSelect = _ref.onSelect,
@@ -1528,7 +1528,7 @@ var TableDropdown = function TableDropdown(_ref) {
     }
   }
 };
-TableDropdown.propTypes = {
+TabularDropdown.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSelect: PropTypes.func,
   defaultSelected: PropTypes.object,
@@ -1542,5 +1542,5 @@ TableDropdown.propTypes = {
   isDisabled: PropTypes.bool
 };
 
-module.exports = TableDropdown;
+module.exports = TabularDropdown;
 //# sourceMappingURL=index.js.map
