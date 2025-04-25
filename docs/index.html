@@ -1,0 +1,101 @@
+\index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TabularDropdown Demo</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/tabulardropdown/dist/tabulardropdown.min.js"></script>
+    <link href="https://unpkg.com/tabulardropdown/dist/tabulardropdown.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .example-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const App = () => {
+            const data = [
+                { id: 1, name: "John Doe", role: "Developer", status: "active", priority: "high" },
+                { id: 2, name: "Jane Smith", role: "Designer", status: "inactive", priority: "medium" },
+                { id: 3, name: "Bob Wilson", role: "Manager", status: "active", priority: "low" },
+            ];
+
+            const badgeConfig = {
+                status: {
+                    active: { bg: '#4CAF50', color: 'white' },
+                    inactive: { bg: '#F44336', color: 'white' }
+                },
+                priority: {
+                    high: { bg: '#FF9800', color: 'black' },
+                    medium: { bg: '#2196F3', color: 'white' },
+                    low: { bg: '#607D8B', color: 'white' }
+                }
+            };
+
+            return (
+                <div className="container">
+                    <h1>TabularDropdown Examples</h1>
+
+                    <div className="example-section">
+                        <h2>Basic Usage</h2>
+                        <TabularDropdown
+                            data={data}
+                            onSelect={(item) => console.log('Selected:', item)}
+                            placeholder="Select a user"
+                        />
+                    </div>
+
+                    <div className="example-section">
+                        <h2>With Badge Styling</h2>
+                        <TabularDropdown
+                            data={data}
+                            badgeColumns={['status', 'priority']}
+                            badgeStyles={badgeConfig}
+                            searchableColumns={['name', 'role']}
+                        />
+                    </div>
+
+                    <div className="example-section">
+                        <h2>Custom Column Width</h2>
+                        <TabularDropdown
+                            data={data}
+                            columnWidths={{
+                                name: '200px',
+                                role: '150px',
+                                status: '100px'
+                            }}
+                            hiddenColumns={['id']}
+                        />
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>

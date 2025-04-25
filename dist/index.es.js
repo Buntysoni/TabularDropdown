@@ -1,12 +1,5 @@
-'use strict';
-
-var React = require('react');
-var PropTypes = require('prop-types');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
-var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 
 function unwrapExports (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
@@ -161,47 +154,47 @@ var TabularDropdown = function TabularDropdown(_ref) {
     columnWidths = _ref$columnWidths === void 0 ? {} : _ref$columnWidths,
     _ref$isDisabled = _ref.isDisabled,
     isDisabled = _ref$isDisabled === void 0 ? false : _ref$isDisabled;
-  var _useState = React.useState(false),
+  var _useState = useState(false),
     _useState2 = _slicedToArray(_useState, 2),
     isOpen = _useState2[0],
     setIsOpen = _useState2[1];
-  var _useState3 = React.useState(defaultSelected || null),
+  var _useState3 = useState(defaultSelected || null),
     _useState4 = _slicedToArray(_useState3, 2),
     selectedItem = _useState4[0],
     setSelectedItem = _useState4[1];
-  var _useState5 = React.useState(defaultValue),
+  var _useState5 = useState(defaultValue),
     _useState6 = _slicedToArray(_useState5, 2),
     inputValue = _useState6[0],
     setInputValue = _useState6[1];
-  var _useState7 = React.useState([]),
+  var _useState7 = useState([]),
     _useState8 = _slicedToArray(_useState7, 2),
     filteredData = _useState8[0],
     setFilteredData = _useState8[1];
-  var _useState9 = React.useState([]),
+  var _useState9 = useState([]),
     _useState10 = _slicedToArray(_useState9, 2),
     visibleData = _useState10[0],
     setVisibleData = _useState10[1];
-  var _useState11 = React.useState(1),
+  var _useState11 = useState(1),
     _useState12 = _slicedToArray(_useState11, 2),
     page = _useState12[0],
     setPage = _useState12[1];
-  var _useState13 = React.useState(-1),
+  var _useState13 = useState(-1),
     _useState14 = _slicedToArray(_useState13, 2),
     focusedIndex = _useState14[0],
     setFocusedIndex = _useState14[1];
-  var _useState15 = React.useState(false),
+  var _useState15 = useState(false),
     _useState16 = _slicedToArray(_useState15, 2),
     isLoading = _useState16[0],
     setIsLoading = _useState16[1];
-  var _useState17 = React.useState(false),
+  var _useState17 = useState(false),
     _useState18 = _slicedToArray(_useState17, 2),
     hasUserSelected = _useState18[0],
     setHasUserSelected = _useState18[1]; // Track user selection
 
-  var dropdownRef = React.useRef(null);
-  var listRef = React.useRef(null);
-  var focusedItemRef = React.useRef(null);
-  var inputRef = React.useRef(null);
+  var dropdownRef = useRef(null);
+  var listRef = useRef(null);
+  var focusedItemRef = useRef(null);
+  var inputRef = useRef(null);
   console.log("defaultSelected", defaultSelected);
 
   // If no columns are specified as searchable, use all columns except hidden ones
@@ -215,7 +208,7 @@ var TabularDropdown = function TabularDropdown(_ref) {
   }) : [];
 
   // Initialize filtered and visible data
-  React.useEffect(function () {
+  useEffect(function () {
     if (data.length > 0) {
       setFilteredData(data);
       setVisibleData(data.slice(0, pageSize));
@@ -226,7 +219,7 @@ var TabularDropdown = function TabularDropdown(_ref) {
   }, [data, pageSize]);
 
   // Update selected item if defaultSelected changes
-  React.useEffect(function () {
+  useEffect(function () {
     debugger;
     if (!hasUserSelected) {
       // Only apply defaults if user hasn't made a selection
@@ -251,7 +244,7 @@ var TabularDropdown = function TabularDropdown(_ref) {
   }, [defaultSelected, defaultValue, data, effectiveSearchableColumns, primaryKey, hasUserSelected]);
   console.log(selectedItem, "selectedItem");
   // Handle clicks outside of dropdown to close it
-  React.useEffect(function () {
+  useEffect(function () {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -265,7 +258,7 @@ var TabularDropdown = function TabularDropdown(_ref) {
   }, []);
 
   // Scroll focused item into view
-  React.useEffect(function () {
+  useEffect(function () {
     if (focusedItemRef.current && listRef.current) {
       var list = listRef.current;
       var item = focusedItemRef.current;
@@ -286,7 +279,7 @@ var TabularDropdown = function TabularDropdown(_ref) {
   }, [focusedIndex]);
 
   // Filter data based on input value
-  var filterData = React.useCallback(function (value) {
+  var filterData = useCallback(function (value) {
     if (!value.trim()) {
       setFilteredData(data);
       setVisibleData(data.slice(0, pageSize));
@@ -353,7 +346,7 @@ var TabularDropdown = function TabularDropdown(_ref) {
   };
 
   // Handle scroll for infinite pagination
-  var handleScroll = React.useCallback(function () {
+  var handleScroll = useCallback(function () {
     if (isLoading || filteredData.length <= visibleData.length) return;
     var list = listRef.current;
     if (!list) return;
@@ -376,7 +369,7 @@ var TabularDropdown = function TabularDropdown(_ref) {
   }, [filteredData, visibleData, page, pageSize, isLoading]);
 
   // Add scroll event listener
-  React.useEffect(function () {
+  useEffect(function () {
     var list = listRef.current;
     if (list) {
       list.addEventListener('scroll', handleScroll);
@@ -446,12 +439,12 @@ var TabularDropdown = function TabularDropdown(_ref) {
   };
   // console.log('Styles object:', styles);
   console.log(inputValue, "inputValue");
-  return /*#__PURE__*/React__default["default"].createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: "".concat(styles.advancedDropdown, " ").concat(className),
     ref: dropdownRef
-  }, /*#__PURE__*/React__default["default"].createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "relative"
-  }, /*#__PURE__*/React__default["default"].createElement("input", {
+  }, /*#__PURE__*/React.createElement("input", {
     ref: inputRef,
     type: "text",
     className: "w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-300 ".concat(isDisabled ? 'bg-gray-100 cursor-not-allowed' : ''),
@@ -465,53 +458,53 @@ var TabularDropdown = function TabularDropdown(_ref) {
     },
     disabled: isDisabled,
     "data-selected": selectedItem ? selectedItem[primaryKey] : ""
-  }), /*#__PURE__*/React__default["default"].createElement("div", {
+  }), /*#__PURE__*/React.createElement("div", {
     className: "absolute right-0 top-1/2 transform -translate-y-1/2 flex"
-  }, inputValue && !isDisabled && /*#__PURE__*/React__default["default"].createElement("button", {
+  }, inputValue && !isDisabled && /*#__PURE__*/React.createElement("button", {
     className: "p-2 text-gray-400 hover:text-gray-600",
     onClick: handleClear,
     type: "button",
     "aria-label": "Clear selection"
-  }, /*#__PURE__*/React__default["default"].createElement("svg", {
+  }, /*#__PURE__*/React.createElement("svg", {
     className: "w-4 h-4",
     fill: "none",
     stroke: "currentColor",
     viewBox: "0 0 24 24",
     xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/React__default["default"].createElement("path", {
+  }, /*#__PURE__*/React.createElement("path", {
     strokeLinecap: "round",
     strokeLinejoin: "round",
     strokeWidth: "2",
     d: "M6 18L18 6M6 6l12 12"
-  }))), /*#__PURE__*/React__default["default"].createElement("button", {
+  }))), /*#__PURE__*/React.createElement("button", {
     className: "p-2 text-gray-500 ".concat(isDisabled ? 'cursor-not-allowed opacity-50' : ''),
     onClick: toggleDropdown,
     type: "button",
     disabled: isDisabled,
     "aria-label": isOpen ? "Close dropdown" : "Open dropdown"
-  }, /*#__PURE__*/React__default["default"].createElement("svg", {
+  }, /*#__PURE__*/React.createElement("svg", {
     className: "w-4 h-4 transition-transform ".concat(isOpen ? 'rotate-180' : ''),
     fill: "none",
     stroke: "currentColor",
     viewBox: "0 0 24 24",
     xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/React__default["default"].createElement("path", {
+  }, /*#__PURE__*/React.createElement("path", {
     strokeLinecap: "round",
     strokeLinejoin: "round",
     strokeWidth: "2",
     d: "M19 9l-7 7-7-7"
-  }))))), isOpen && !isDisabled && /*#__PURE__*/React__default["default"].createElement("div", {
+  }))))), isOpen && !isDisabled && /*#__PURE__*/React.createElement("div", {
     className: "".concat(styles.dropdownList, " absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg")
-  }, /*#__PURE__*/React__default["default"].createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "overflow-x-auto"
-  }, /*#__PURE__*/React__default["default"].createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     ref: listRef,
     className: "".concat(styles.dropdownList, " max-h-60 overflow-y-auto"),
     onScroll: handleScroll
-  }, availableColumns.length > 0 && /*#__PURE__*/React__default["default"].createElement("div", {
+  }, availableColumns.length > 0 && /*#__PURE__*/React.createElement("div", {
     className: "".concat(styles.dropdownHeaderCell, " sticky top-0 bg-gray-100 border-b flex text-sm font-semibold whitespace-nowrap")
   }, availableColumns.map(function (column) {
-    return /*#__PURE__*/React__default["default"].createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       key: column,
       className: "".concat(styles.dropdownHeaderCell, " px-3 py-2"),
       style: {
@@ -519,7 +512,7 @@ var TabularDropdown = function TabularDropdown(_ref) {
       }
     }, column.charAt(0).toUpperCase() + column.slice(1).replace(/([A-Z])/g, ' $1'));
   })), visibleData.length > 0 ? visibleData.map(function (item, index) {
-    return /*#__PURE__*/React__default["default"].createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       key: item[primaryKey] || index,
       ref: index === focusedIndex ? focusedItemRef : null,
       className: "".concat(styles.dropdownRow, " flex border-b last:border-b-0 hover:bg-gray-100 cursor-pointer whitespace-nowrap ").concat(index === focusedIndex ? 'bg-blue-50' : ''),
@@ -530,7 +523,7 @@ var TabularDropdown = function TabularDropdown(_ref) {
         return setFocusedIndex(index);
       }
     }, availableColumns.map(function (column) {
-      return /*#__PURE__*/React__default["default"].createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         key: "".concat(item[primaryKey] || index, "-").concat(column),
         className: "".concat(styles.dropdownCell, " px-3 py-2 truncate ").concat(column === effectiveSearchableColumns[0] ? 'font-medium text-gray-800' : column === effectiveSearchableColumns[1] ? 'text-blue-600' : 'text-gray-600'),
         style: {
@@ -538,11 +531,11 @@ var TabularDropdown = function TabularDropdown(_ref) {
         }
       }, renderCellContent(item, column));
     }));
-  }) : /*#__PURE__*/React__default["default"].createElement("div", {
+  }) : /*#__PURE__*/React.createElement("div", {
     className: "px-3 py-4 text-center text-gray-500"
-  }, "No matching items found"), isLoading && /*#__PURE__*/React__default["default"].createElement("div", {
+  }, "No matching items found"), isLoading && /*#__PURE__*/React.createElement("div", {
     className: "px-3 py-2 text-center text-gray-500"
-  }, /*#__PURE__*/React__default["default"].createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
     className: "inline-block animate-spin mr-2"
   }, "\u27F3"), "Loading more items...")))));
   function renderCellContent(item, column) {
@@ -550,7 +543,7 @@ var TabularDropdown = function TabularDropdown(_ref) {
 
     // Handle null or undefined values
     if (value === null || value === undefined) {
-      return /*#__PURE__*/React__default["default"].createElement("span", {
+      return /*#__PURE__*/React.createElement("span", {
         className: "text-gray-400"
       }, "\u2014");
     }
@@ -577,7 +570,7 @@ var TabularDropdown = function TabularDropdown(_ref) {
       // Default badge styling
       className += 'bg-gray-100 text-gray-800';
     }
-    return /*#__PURE__*/React__default["default"].createElement("span", {
+    return /*#__PURE__*/React.createElement("span", {
       className: className
     }, value);
   }
@@ -625,18 +618,18 @@ var TabularDropdown = function TabularDropdown(_ref) {
   }
 };
 TabularDropdown.propTypes = {
-  data: PropTypes__default["default"].arrayOf(PropTypes__default["default"].object).isRequired,
-  onSelect: PropTypes__default["default"].func,
-  defaultSelected: PropTypes__default["default"].object,
-  className: PropTypes__default["default"].string,
-  placeholder: PropTypes__default["default"].string,
-  pageSize: PropTypes__default["default"].number,
-  primaryKey: PropTypes__default["default"].string,
-  searchableColumns: PropTypes__default["default"].arrayOf(PropTypes__default["default"].string),
-  hiddenColumns: PropTypes__default["default"].arrayOf(PropTypes__default["default"].string),
-  columnWidths: PropTypes__default["default"].object,
-  isDisabled: PropTypes__default["default"].bool
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onSelect: PropTypes.func,
+  defaultSelected: PropTypes.object,
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+  pageSize: PropTypes.number,
+  primaryKey: PropTypes.string,
+  searchableColumns: PropTypes.arrayOf(PropTypes.string),
+  hiddenColumns: PropTypes.arrayOf(PropTypes.string),
+  columnWidths: PropTypes.object,
+  isDisabled: PropTypes.bool
 };
 
-module.exports = TabularDropdown;
-//# sourceMappingURL=index.js.map
+export { TabularDropdown as default };
+//# sourceMappingURL=index.es.js.map
