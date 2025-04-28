@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styles from './TabularDropdown.module.css';
+// import './index.css';
 
 const TabularDropdown = ({
     data = [],

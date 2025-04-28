@@ -1,0 +1,10 @@
+src/
+docs/
+rollup.config.js
+node_modules/
+package-lock.json
+README.md
+.storybook/
+.vscode/
+*.zip
+*.tgz

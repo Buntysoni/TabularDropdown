@@ -2,6 +2,55 @@
     position: relative;
     width: 100%;
     min-width: 200px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.advancedDropdown input {
+    width: 100%;
+    padding: 12px 35px 12px 16px;
+    font-size: 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    outline: none;
+    font: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    letter-spacing: inherit;
+    background-color: transparent;
+    opacity: 1;
+}
+
+.advancedDropdown input:focus {
+    border-color: #90b7fd;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+}
+
+.searchContainer {
+    position: relative;
+    margin-bottom: 0;
+}
+
+.clearButton {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.dropdownArrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    pointer-events: none;
 }
 
 .dropdownMenu {
@@ -10,6 +59,13 @@
     min-width: 100%;
     max-width: max-content;
     z-index: 1000;
+    margin-top: -1px;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    background-color: white;
 }
 
 .dropdownList {
@@ -17,6 +73,8 @@
     scrollbar-color: #cbd5e0 #f7fafc;
     overflow-x: auto;
     white-space: nowrap;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .dropdownList::-webkit-scrollbar {
@@ -38,23 +96,27 @@
     display: flex;
     border-bottom: 1px solid #e5e7eb;
     min-width: fit-content;
+    background-color: #f0f5ff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    align-items: center;
 }
 
 .dropdownRow:hover {
-    background-color: rgba(59, 130, 246, 0.05);
+    background-color: #e6eefc;
 }
 
-.focused {
+.dropdownRow.focused {
     background-color: rgba(59, 130, 246, 0.1);
 }
 
-.dropdownCell {
-    min-width: 100px;
-    flex: 1;
-    padding: 0.5rem 0.75rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.dropdownHeaderRow {
+    width: 100%;
+    display: flex;
+    min-width: fit-content;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .dropdownHeaderCell {
@@ -62,9 +124,56 @@
     top: 0;
     background-color: #f9fafb;
     z-index: 1;
-    padding: 0.5rem 0.75rem;
-    font-weight: 600;
+    padding: 8px 16px;
+    font-weight: 500;
+    font-size: 13px;
+    color: #374151;
     min-width: 100px;
     flex: 1;
     white-space: nowrap;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.dropdownCell {
+    min-width: 100px;
+    flex: 1;
+    padding: 12px 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+/* Column-specific styles */
+.nameCell {
+    font-weight: 500;
+    color: #111827;
+}
+
+.companyCell {
+    color: #3b82f6;
+}
+
+.codeCell {
+    color: #4b5563;
+    font-family: monospace;
+}
+
+.categoryCell {
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+}
+
+.categoryCell span {
+    background-color: #dbeafe;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #3b82f6;
+}
+
+.statusCell {
+    color: #10b981;
+    text-align: right;
 }
